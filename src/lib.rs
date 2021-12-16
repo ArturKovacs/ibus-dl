@@ -1,4 +1,3 @@
-
 #![allow(non_camel_case_types)]
 #![cfg_attr(rustfmt, rustfmt_skip)]
 
