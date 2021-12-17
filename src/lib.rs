@@ -23,6 +23,13 @@ pub type gpointer = *mut ::std::os::raw::c_void;
 pub type GQuark = guint32;
 pub type GType = gsize;
 
+pub const IBUS_CAP_PREEDIT_TEXT: guint32 = 1 << 0;
+pub const IBUS_CAP_AUXILIARY_TEXT: guint32 = 1 << 1;
+pub const IBUS_CAP_LOOKUP_TABLE: guint32 = 1 << 2;
+pub const IBUS_CAP_FOCUS: guint32 = 1 << 3;
+pub const IBUS_CAP_PROPERTY: guint32 = 1 << 4;
+pub const IBUS_CAP_SURROUNDING_TEXT: guint32 = 1 << 5;
+
 #[doc = " gunichar:"]
 #[doc = ""]
 #[doc = " A type which can hold any UTF-32 or UCS-4 character code,"]
@@ -150,6 +157,7 @@ functions:
     fn ibus_bus_list_engines(*mut IBusBus) -> *mut GList,
     fn ibus_bus_get_use_sys_layout(*mut IBusBus) -> gboolean,
     fn ibus_bus_get_use_global_engine(*mut IBusBus) -> gboolean,
+    fn ibus_bus_get_global_engine(*mut IBusBus) -> *mut IBusEngineDesc,
     fn ibus_bus_is_global_engine_enabled(*mut IBusBus) -> gboolean,
     fn ibus_bus_set_global_engine(*mut IBusBus, *const gchar) -> gboolean,
 
@@ -234,15 +242,7 @@ functions:
 );
 
 pub static IBUS: Lazy<IBus> = Lazy::new(|| unsafe {
-    IBus::open("libibus-1.0.so").expect("Failed to load ibus")
+    IBus::open("libibus-1.0.so").expect(
+        "Failed to load ibus. You might need to install `libibus`"
+    )
 });
-
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
-    }
-}

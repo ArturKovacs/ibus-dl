@@ -1,7 +1,7 @@
 
 ## ibus-dl
 
-This crate provides an unsafe interface to the ibus library installed to the system where it is executed. The ibus shared object is loaded and linked at runtime.
+This crate provides an unsafe interface to the ibus library installed to the system where it is executed. The ibus shared object is located and loaded at runtime, there shouldn't be any need for any complie time action.
 
 Note that the interface that this crate exposes is limited, so feel free to make a PR if it's missing a function you need.
 
