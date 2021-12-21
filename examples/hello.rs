@@ -1,5 +1,4 @@
-
-use std::{panic, ffi::CStr};
+use std::{ffi::CStr, panic};
 
 use ibus_dl::IBUS;
 
